@@ -105,8 +105,6 @@ body {
         {% csrf_token %}
         <label>Room Name</label>
         <input type="text" name="room_name" id="room_name" width="100px" />
-        <label>Username</label>
-        <input type="text" name="username" id="username" width="100px" />
         <input type="submit" value="Enter Room">
     </form>
 </div>
@@ -120,4 +118,5 @@ body {
 <p>You are not logged in</p>
 <p><a href="{% url 'password_reset' %}">Password Reset</a></p>
 <p><a href="{% url 'login' %}">Log In</a></p>
+<p><a href="{% url 'signup' %}">Sign Up</a></p>
 {% endif %}
