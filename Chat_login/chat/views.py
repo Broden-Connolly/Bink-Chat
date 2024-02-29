@@ -17,7 +17,7 @@ def room(request, room):
 
 def checkview(request):
     room = request.POST['room_name']
-    username = request.POST['username']
+    username = request.user.username
 
     if Room.objects.filter(name=room).exists():
         return redirect('/'+room+'/?username='+username)
@@ -28,7 +28,7 @@ def checkview(request):
 
 def send(request):
     message = request.POST['message']
-    username = request.POST['username']
+    username = request.user.username
     room_id = request.POST['room_id']
 
     new_message = Message.objects.create(value=message, user=username, room=room_id)
