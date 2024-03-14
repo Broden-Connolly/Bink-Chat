@@ -102,11 +102,14 @@ body {
     </style>
 
     <form id="post-form" method="POST" action="checkview">
-        {% csrf_token %}
-        <label>Room Name</label>
-        <input type="text" name="room_name" id="room_name" width="100px" />
-        <input type="submit" value="Enter Room">
+      {% csrf_token %}
+      <label>Room Name</label>
+      <input type="text" name="room_name" id="room_name" width="100px" />
+      <label>Password</label>
+      <input type="password" password="password" id="password" width="100px" />
+      <input type="submit" value="Enter Room">
     </form>
+    <p><a href="{% url 'create_room' %}">Create New Room</a></p>
 </div>
 
 

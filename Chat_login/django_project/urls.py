@@ -8,6 +8,7 @@ urlpatterns = [
     path("accounts/", include("accounts.urls")),
     path("chat", include("chat.urls")),
     path("chat", TemplateView.as_view(template_name="home.html"), name="chat"),
+    path("create_room/", TemplateView.as_view(template_name="newroom.html"), name="create_room"),
     path("accounts/", include("django.contrib.auth.urls")),
     path("", TemplateView.as_view(template_name="userlogin.html"), name="userlogin"),
     path('', views.home, name='home'),
@@ -15,4 +16,5 @@ urlpatterns = [
     path('checkview', views.checkview, name='checkview'),
     path('send', views.send, name='send'),
     path('getMessages/<str:room>/', views.getMessages, name='getMessages'),
+    path('create_room/checkview', views.checkview, name='checkview'),
 ]

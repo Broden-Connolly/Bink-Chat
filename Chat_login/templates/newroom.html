@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>This room does not exist yet. Create New Room</title>
+</head>
+<body>
+    <h1>Create New Room</h1>
+    <form id="post-form" method="POST" action="checkview">
+        {% csrf_token %}
+        <label>Room Name</label>
+        <input type="text" name="room_name" id="room_name" width="100px" />
+        <label>Create Password</label>
+        <input type="password" password="password" id="password" width="100px" />
+        <input type="submit" value="Enter Room">
+      </form>
+</body>
+</html>

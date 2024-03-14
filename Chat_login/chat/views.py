@@ -18,14 +18,23 @@ def room(request, room):
 def checkview(request):
     room = request.POST['room_name']
     username = request.user.username
-
-    if Room.objects.filter(name=room).exists():
+    passw = request.POST.get('password')  # Use get() method to avoid MultiValueDictKeyError
+    if Room.objects.filter(name=room, password=passw).exists():
         return redirect('/'+room+'/?username='+username)
     else:
-        new_room = Room.objects.create(name=room)
-        new_room.save()
-        return redirect('/'+room+'/?username='+username)
+        return createRoom(request)
 
+def createRoom(request):
+    room_name = request.POST['room_name']
+    passw = request.POST.get('password')  # Use get() method to avoid MultiValueDictKeyError
+
+    if Room.objects.filter(name=room_name).exists():
+        return HttpResponse('Room already exists')
+    else:
+        chat_room = Room.objects.create(name=room_name, password=passw)
+        chat_room.save()
+        return checkview(request)
+    
 def send(request):
     message = request.POST['message']
     username = request.user.username
