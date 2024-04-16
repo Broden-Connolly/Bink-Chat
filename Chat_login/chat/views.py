@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from chat.models import Room, Message
 from django.http import HttpResponse, JsonResponse
+from chat.models import Message, Room
 
 # Create your views here.
 def home(request):
@@ -18,20 +19,20 @@ def room(request, room):
 def checkview(request):
     room = request.POST['room_name']
     username = request.user.username
-    passw = request.POST.get('password')  # Use get() method to avoid MultiValueDictKeyError
-    if Room.objects.filter(name=room, password=passw).exists():
+    password = request.POST['password']  # Use get() method to avoid MultiValueDictKeyError
+    if Room.objects.filter(name=room, passw=password).exists():
         return redirect('/'+room+'/?username='+username)
     else:
-        return createRoom(request)
+        return HttpResponse('Incorrect Password or Room does not exist')
 
 def createRoom(request):
     room_name = request.POST['room_name']
-    passw = request.POST.get('password')  # Use get() method to avoid MultiValueDictKeyError
+    password = request.POST['password']  # Retrieve the password from request.POST dictionary
 
     if Room.objects.filter(name=room_name).exists():
         return HttpResponse('Room already exists')
     else:
-        chat_room = Room.objects.create(name=room_name, password=passw)
+        chat_room = Room.objects.create(name=room_name, passw=password)  # Save the password to the database
         chat_room.save()
         return checkview(request)
     

@@ -5,12 +5,13 @@
 </head>
 <body>
     <h1>Create New Room</h1>
-    <form id="post-form" method="POST" action="checkview">
+    <form id="post-form" method="POST" action="createRoom">
         {% csrf_token %}
         <label>Room Name</label>
         <input type="text" name="room_name" id="room_name" width="100px" />
+        {% csrf_token %}
         <label>Create Password</label>
-        <input type="password" password="password" id="password" width="100px" />
+        <input type="text" name="password" id="password" width="100px" />
         <input type="submit" value="Enter Room">
       </form>
 </body>
