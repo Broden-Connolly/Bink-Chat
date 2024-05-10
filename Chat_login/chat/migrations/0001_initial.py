@@ -20,6 +20,7 @@ class Migration(migrations.Migration):
                 ('date', models.DateTimeField(blank=True, default=datetime.datetime.now)),
                 ('user', models.CharField(max_length=100)),
                 ('room', models.CharField(max_length=100)),
+                ('bits', models.CharField(max_length=5000)),
             ],
         ),
         migrations.CreateModel(
